@@ -165,7 +165,28 @@ Write an 8086 assembly language program to exchange the contents of two
 5.  Stop the program.
 
 ### Assembly Program
+.MODEL SMALL
+.STACK 100H
 
+.DATA
+    VALUE1 DW 1111H
+    VALUE2 DW 2222H
+
+.CODE
+MAIN PROC
+    MOV AX, @DATA
+    MOV DS, AX
+
+    MOV AX, VALUE1
+    MOV BX, VALUE2
+
+    MOV VALUE1, BX
+    MOV VALUE2, AX
+
+    MOV AH, 4CH
+    INT 21H
+MAIN ENDP
+END MAIN
  
 
 ### Expected Result
@@ -177,7 +198,7 @@ Write an 8086 assembly language program to exchange the contents of two
 
 ### Explanation
 
-  
+  The 8086 microprocessor is a 16-bit processor with a 20-bit address bus that can access up to 1 MB of memory. Its architecture consists of two main units: the Bus Interface Unit (BIU) and the Execution Unit (EU). The BIU fetches instructions, generates physical addresses, and handles memory and input/output operations. It also contains segment registers, the instruction pointer, and a 6-byte instruction queue. The EU decodes and executes instructions using the Arithmetic Logic Unit (ALU), general-purpose registers, and flag register. In Part (b), the assembly program transfers the 16-bit hexadecimal value 1234H into the AX register, copies it into the BX register, and stores it in the memory variable RESULT. The final output shows AX = 1234H, BX = 1234H, and RESULT = 1234H. In Part (c), the program exchanges the contents of two 16-bit memory locations using the AX and BX registers. Initially, VALUE1 contains 1111H and VALUE2 contains 2222H. After execution, VALUE1 contains 2222H and VALUE2 contains 1111H. The emulator displays these updated register and memory values, confirming the correct execution of the programs. Thus, this experiment helps us understand 8086 architecture, register operations, memory storage, and data exchange using assembly language instructions.
 ------------------------------------------------------------------------
 
 ## Procedure
@@ -192,6 +213,7 @@ Write an 8086 assembly language program to exchange the contents of two
     results.
 ## Screenshot of the results 
 
+<img width="1312" height="1199" alt="image" src="https://github.com/user-attachments/assets/d3d6a04a-a17e-4dd7-8938-db261efca1d2" />
 
 
 ## Result
